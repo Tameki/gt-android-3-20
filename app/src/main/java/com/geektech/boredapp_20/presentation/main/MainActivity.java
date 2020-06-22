@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.geektech.boredapp_20.App;
 import com.geektech.boredapp_20.R;
 
 public class MainActivity extends AppCompatActivity {
