@@ -5,8 +5,6 @@ import android.util.Log;
 import com.geektech.boredapp_20.model.BoredAction;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
@@ -32,23 +30,15 @@ public class BoredApiClient {
 
         Log.d("ololo", call.request().url().toString());
 
-        call.enqueue(new Callback<BoredAction>() {
+        call.enqueue(new CoreCallback<BoredAction>() {
             @Override
-            public void onResponse(Call<BoredAction> call, Response<BoredAction> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        callback.onSuccess(response.body());
-                    } else {
-                        callback.onFailure(new Exception("Body is empty"));
-                    }
-                } else {
-                    callback.onFailure(new Exception("Response code " + response.code()));
-                }
+            void onSuccess(BoredAction result) {
+                callback.onSuccess(result);
             }
 
             @Override
-            public void onFailure(Call<BoredAction> call, Throwable t) {
-                callback.onFailure(new Exception(t));
+            void onFailure(Exception exception) {
+                callback.onFailure(exception);
             }
         });
     }

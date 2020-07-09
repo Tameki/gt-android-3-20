@@ -23,10 +23,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BoredAction boredAction = App.boredStorage.getBoredAction("6098037");
+        Log.d("ololo", "Stored " + boredAction);
+
         App.boredApiClient.getAction(null, null, new BoredApiClient.BoredActionCallback() {
             @Override
             public void onSuccess(BoredAction boredAction) {
-                Log.d("ololo", boredAction.toString());
+                App.boredStorage.saveBoredAction(boredAction);
+
+                Log.d("ololo", "Receive " + boredAction.toString());
+
+                for (BoredAction action : App.boredStorage.getAllActions()) {
+                    Log.d("ololo", action.toString());
+                }
             }
 
             @Override
