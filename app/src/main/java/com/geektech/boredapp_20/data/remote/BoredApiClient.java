@@ -1,7 +1,8 @@
-package com.geektech.boredapp_20.data;
+package com.geektech.boredapp_20.data.remote;
 
 import android.util.Log;
 
+import com.geektech.boredapp_20.core.CoreCallback;
 import com.geektech.boredapp_20.model.BoredAction;
 
 import retrofit2.Call;
@@ -32,12 +33,12 @@ public class BoredApiClient {
 
         call.enqueue(new CoreCallback<BoredAction>() {
             @Override
-            void onSuccess(BoredAction result) {
+            public void onSuccess(BoredAction result) {
                 callback.onSuccess(result);
             }
 
             @Override
-            void onFailure(Exception exception) {
+            public void onFailure(Exception exception) {
                 callback.onFailure(exception);
             }
         });

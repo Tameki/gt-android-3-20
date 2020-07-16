@@ -1,12 +1,11 @@
 package com.geektech.boredapp_20;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.room.Room;
 
 import com.geektech.boredapp_20.data.AppPreferences;
-import com.geektech.boredapp_20.data.BoredApiClient;
+import com.geektech.boredapp_20.data.remote.BoredApiClient;
 import com.geektech.boredapp_20.data.db.BoredDatabase;
 import com.geektech.boredapp_20.data.local.BoredStorage;
 

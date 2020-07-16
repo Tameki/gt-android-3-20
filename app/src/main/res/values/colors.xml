@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#28323B</color>
+    <color name="colorPrimaryDark">#28323B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="main_bg">#28323B</color>
+
+    <!-- Base colors -->
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+
+    <color name="light_blue">#4486F1</color>
+    <color name="violet">#702DFF</color>
+    <color name="pink">#DC366A</color>
+
 </resources>
