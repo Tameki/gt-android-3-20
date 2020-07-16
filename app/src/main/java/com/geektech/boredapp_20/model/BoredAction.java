@@ -1,5 +1,8 @@
 package com.geektech.boredapp_20.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,7 +11,7 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "bored_action")
-public class BoredAction {
+public class BoredAction implements Parcelable {
 
     @SerializedName("key")
     @ColumnInfo(name = "uuid")
@@ -49,6 +52,40 @@ public class BoredAction {
         this.link = link;
         this.accessibility = accessibility;
     }
+
+    protected BoredAction(Parcel in) {
+        key = in.readString();
+        activity = in.readString();
+        type = in.readString();
+        if (in.readByte() == 0) {
+            participants = null;
+        } else {
+            participants = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            price = null;
+        } else {
+            price = in.readFloat();
+        }
+        link = in.readString();
+        if (in.readByte() == 0) {
+            accessibility = null;
+        } else {
+            accessibility = in.readFloat();
+        }
+    }
+
+    public static final Creator<BoredAction> CREATOR = new Creator<BoredAction>() {
+        @Override
+        public BoredAction createFromParcel(Parcel in) {
+            return new BoredAction(in);
+        }
+
+        @Override
+        public BoredAction[] newArray(int size) {
+            return new BoredAction[size];
+        }
+    };
 
     public String getKey() {
         return key;
@@ -117,5 +154,36 @@ public class BoredAction {
                 ", link='" + link + '\'' +
                 ", accessibility=" + accessibility +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(key);
+        dest.writeString(activity);
+        dest.writeString(type);
+        if (participants == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(participants);
+        }
+        if (price == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(price);
+        }
+        dest.writeString(link);
+        if (accessibility == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(accessibility);
+        }
     }
 }

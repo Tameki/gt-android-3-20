@@ -5,17 +5,19 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.geektech.boredapp_20.data.AppPreferences;
+import com.geektech.boredapp_20.data.BoredRepository;
 import com.geektech.boredapp_20.data.remote.BoredApiClient;
 import com.geektech.boredapp_20.data.db.BoredDatabase;
 import com.geektech.boredapp_20.data.local.BoredStorage;
+
 
 public class App extends Application {
 
     private static BoredDatabase boredDatabase;
 
     public static AppPreferences appPreferences;
-    public static BoredApiClient boredApiClient;
-    public static BoredStorage boredStorage;
+
+    public static BoredRepository boredRepository;
 
     @Override
     public void onCreate() {
@@ -29,10 +31,11 @@ public class App extends Application {
                 .allowMainThreadQueries()
                 .build();
 
-        boredStorage = new BoredStorage(boredDatabase.boredDao());
-
         appPreferences = new AppPreferences(this);
-        boredApiClient = new BoredApiClient();
+
+        BoredStorage boredStorage = new BoredStorage(boredDatabase.boredDao());
+        BoredApiClient boredApiClient = new BoredApiClient();
+        boredRepository = new BoredRepository(boredStorage, boredApiClient);
     }
 
 }

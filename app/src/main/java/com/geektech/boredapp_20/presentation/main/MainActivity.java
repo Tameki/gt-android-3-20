@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         mViewPager.setCurrentItem(2);
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
