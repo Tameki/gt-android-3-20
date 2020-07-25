@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -42,6 +43,9 @@ public class BoredAction implements Parcelable {
     @SerializedName("accessibility")
     @ColumnInfo(name = "accessibility")
     private Float accessibility;
+
+    @Ignore
+    private Boolean isSaved = false;
 
     public BoredAction(String key, String activity, String type, Integer participants, Float price, String link, Float accessibility) {
         this.key = key;
@@ -141,6 +145,14 @@ public class BoredAction implements Parcelable {
 
     public void setAccessibility(Float accessibility) {
         this.accessibility = accessibility;
+    }
+
+    public Boolean getSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(Boolean saved) {
+        isSaved = saved;
     }
 
     @Override

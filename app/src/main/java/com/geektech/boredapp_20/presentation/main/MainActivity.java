@@ -19,8 +19,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, MainActivity.class));
+    public static void start(Context context, int id) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
     }
 
     private ViewPager mViewPager;

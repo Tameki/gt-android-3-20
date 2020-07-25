@@ -38,7 +38,7 @@ public class IntroActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.start(IntroActivity.this);
+                MainActivity.start(IntroActivity.this, 10);
                 finish();
             }
         });
@@ -63,7 +63,7 @@ public class IntroActivity extends AppCompatActivity {
         if (viewPager.getCurrentItem() < IntroPagerAdapter.PAGES_COUNT - 1) {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
         } else {
-            MainActivity.start(IntroActivity.this);
+            MainActivity.start(IntroActivity.this, 20);
             finish();
         }
     }
